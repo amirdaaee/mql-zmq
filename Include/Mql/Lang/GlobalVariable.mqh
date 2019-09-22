@@ -38,8 +38,16 @@ public:
    static datetime   set(string name,double value) {return GlobalVariableSet(name,value);}
    static bool       setOn(string name,double value,double check) {return GlobalVariableSetOnCondition(name,value,check);}
 
-   static bool       remove(string name) {return GlobalVariableDel(name);}
-   static bool       removeAll(string prefix=NULL,datetime before=0) {return GlobalVariablesDeleteAll(prefix,before);}
+   static bool       remove(string name) 
+     {
+      bool ret=GlobalVariableDel(name);
+      return ret;
+     }
+   static bool       removeAll(string prefix=NULL,datetime before=0)
+     {
+      bool ret=GlobalVariablesDeleteAll(prefix,before);
+      return ret;
+     }
   };
 //+------------------------------------------------------------------+
 //| TempVar is a variable whose life time is the same as the program |
@@ -61,7 +69,11 @@ public:
 
    bool              isValid() const {return GlobalVariable::exists(m_name);}
    string            getName() const {return m_name;}
-   bool              set(double value) {return GlobalVariable::set(m_name,value);}
+   bool              set(double value)
+     {
+      bool ret=GlobalVariable::set(m_name,value);
+      return ret;
+     }
    double            get() const {return GlobalVariable::get(m_name);}
    bool              setOn(double value,double check) {return GlobalVariable::setOn(m_name,value,check);}
    datetime          lastAccess() const {return GlobalVariable::lastAccess(m_name);}
